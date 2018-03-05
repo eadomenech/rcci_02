@@ -138,12 +138,16 @@ Wavelet Discreta Inversa (IDWT).
 La DWT y IDWT en dos dimensiones (m,n) pueden ser definidas como la implementación de la DWT y IDWT para una dimensión correspondientes a las
 dimensiones m y n separadamente. Una imagen puede ser descompuesta en una estructura en pirámide como se muestra en la figura \ref{piramide}.
 
-\begin{figure}[h]	% h-here, t-top, b-bottom
+\begin{figure}[H]	% h-here, t-top, b-bottom
 \centering
-\includegraphics[width=7cm]{DWT} %	** if .eps or .pdf, don't need extension
+\includegraphics[width=6cm]{DWT2a} %	** if .eps or .pdf, don't need extension
 \caption{Pirámide al descomponer una imagen con DWT 2D.}
 \label{piramide}
 \end{figure}
+
+Se puede apreciar que se obtienen  cuatro  tipos  de  coeficientes: 
+aproximaciones (LL),  detalles  horizontales (LH),  detalles  verticales (HL) y detalles  diagonales (HH).  La  aproximación  contiene  la  mayor parte  de  la  energía  de  la  imagen, mientras  que  los  detalles  tienen  valores próximos a cero.
+
 
 \subsection{Códigos de Respuesta Rápida (QR Code)}
 
