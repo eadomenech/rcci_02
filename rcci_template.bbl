@@ -1,0 +1,552 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Abraham2016}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Abraham}{A.}%
+     {Jobin}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Paul}{P.}%
+     {Varghese}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJPV1}
+  \strng{fullhash}{AJPV1}
+  \field{labelyear}{2016}
+  \field{sortinit}{A}
+  \verb{doi}
+  \verb http://dx.doi.org/10.14257/ijsip.2016.9.7.13
+  \endverb
+  \field{number}{7}
+  \field{pages}{137\bibrangedash 146}
+  \field{title}{{A DCT Based Imperceptible Color Image Watermarking Scheme}}
+  \field{volume}{9}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2016/2016 - A DCT Based Imper
+  \verb ceptible Color Image Watermarking Scheme - Abraham, Paul.pdf:pdf
+  \endverb
+  \field{journaltitle}{International Journal of Signal Processing, Image
+  Processing and Pattern Recognition}
+  \field{year}{2016}
+\endentry
+
+\entry{Chow2017}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chow}{C.}%
+     {Yang-wai}{Y.-w.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Susilo}{S.}%
+     {Willy}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tonien}{T.}%
+     {Joseph}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zong}{Z.}%
+     {Wei}{W.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{data hiding,discrete cosine transform,discrete wavelet,error
+  correction,qr code,transform,watermarking}
+  \strng{namehash}{CYwSWTJ+1}
+  \strng{fullhash}{CYwSWTJZW1}
+  \field{labelyear}{2017}
+  \field{sortinit}{C}
+  \field{booktitle}{ACISP 2017}
+  \verb{doi}
+  \verb 10.1007/978-3-319-59870-3
+  \endverb
+  \field{isbn}{9783319598703}
+  \field{pages}{314\bibrangedash 331}
+  \field{title}{{A QR Code Watermarking Approach Based on the DWT-DCT
+  Technique}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2017/2017 - A QR Code Waterma
+  \verb rking Approach Based on the DWT-DCT Technique - Chow et al.pdf:pdf
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{Cox2008}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Cox}{C.}%
+     {I.J.}{I.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Folder - Doctorado}
+  \strng{namehash}{CI1}
+  \strng{fullhash}{CI1}
+  \field{labelyear}{2008}
+  \field{sortinit}{C}
+  \field{isbn}{1605580589}
+  \field{title}{{Watermarking, steganography and content forensics}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2008/Watermarking, steganogra
+  \verb phy and content forensics/2008 - Cox - Watermarking, steganography and
+  \verb content forensics.pdf:pdf
+  \endverb
+  \field{year}{2008}
+\endentry
+
+\entry{Cao2010}{misc}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Feng}{F.}%
+     {Liu~Ping}{L.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zheng}{Z.}%
+     {Liang~Bin}{L.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cao}{C.}%
+     {Peng}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{-arnold,watermarking attacks}
+  \strng{namehash}{FLPZLBCP1}
+  \strng{fullhash}{FLPZLBCP1}
+  \field{labelyear}{2010}
+  \field{sortinit}{F}
+  \field{isbn}{9781424455393}
+  \field{pages}{455\bibrangedash 458}
+  \field{title}{{A DWT-DCT Based Blind Watermarking Algorithm for Copyright
+  Protection}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2010/2010 - A DWT-DCT Based B
+  \verb lind Watermarking Algorithm for Copyright Protection - Feng, Zheng, Cao
+  \verb .pdf:pdf;:home/ernesto/Documentos/Mendeley Desktop/2010/2010 - A DWT-DC
+  \verb T Based Blind Watermarking Algorithm for Copyright Protection - Feng, Z
+  \verb heng, Cao.pdf:pdf
+  \endverb
+  \field{year}{2010}
+\endentry
+
+\entry{Ghazvini2017}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Ghazvini}{G.}%
+     {Mahdieh}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hachrood}{H.}%
+     {Elham~Mohamadi}{E.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mirzadi}{M.}%
+     {Mojdeh}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Taylor \& Francis}%
+  }
+  \keyw{Digital image watermarking,discrete wavelet transform,discrete cosine
+  transform,genetic algorithm}
+  \strng{namehash}{GMHEMMM1}
+  \strng{fullhash}{GMHEMMM1}
+  \field{labelyear}{2017}
+  \field{sortinit}{G}
+  \verb{doi}
+  \verb 10.1080/19361610.2017.1277878
+  \endverb
+  \field{issn}{1936-1610}
+  \field{number}{2}
+  \field{pages}{260\bibrangedash 275}
+  \field{title}{{An Improved Image Watermarking Method in Frequency Domain}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1080/19361610.2017.1277878
+  \endverb
+  \field{volume}{12}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2017/2017 - An Improved Image
+  \verb  Watermarking Method in Frequency Domain - Ghazvini, Hachrood, Mirzadi.
+  \verb pdf:pdf
+  \endverb
+  \field{journaltitle}{Journal of Applied Security Research}
+  \field{year}{2017}
+\endentry
+
+\entry{Hahn2002}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hahn}{H.}%
+     {Hee~Il}{H.~I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Joung}{J.}%
+     {Joung~Koo}{J.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{HHIJJK1}
+  \strng{fullhash}{HHIJJK1}
+  \field{labelyear}{2002}
+  \field{sortinit}{H}
+  \field{booktitle}{Signal Processing, 2002 6th International Conference on}
+  \field{isbn}{0780374886}
+  \field{pages}{1791\bibrangedash 1794}
+  \field{title}{{Implementation of algorithm to decode two-dimensional barcode
+  PDF-417}}
+  \field{volume}{2}
+  \field{year}{2002}
+\endentry
+
+\entry{He2002}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {He}{H.}%
+     {Duanfeng}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hunter}{H.}%
+     {Kevin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Joseph}{J.}%
+     {Eugene}{E.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HDHKJE1}
+  \strng{fullhash}{HDHKJE1}
+  \field{labelyear}{2002}
+  \field{sortinit}{H}
+  \field{title}{{Techniques for reading two dimensional code, including
+  maxicode}}
+  \field{annotation}{%
+  The following values have no corresponding Zotero field: PB - Google Patents%
+  }
+  \field{year}{2002}
+\endentry
+
+\entry{Journal2015}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Jadhao}{J.}%
+     {C.M.}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{embedding,qr code,watermark extraction,wavelet}
+  \strng{namehash}{JC1}
+  \strng{fullhash}{JC1}
+  \field{labelyear}{2015}
+  \field{sortinit}{J}
+  \field{booktitle}{International Journal of Combined Research \& Development
+  (IJCRD)}
+  \field{pages}{4127\bibrangedash 4129}
+  \field{title}{{Algorithm of QR code based Digital Image Watermarking}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2015/2015 - Algorithm of QR c
+  \verb ode based Digital Image Watermarking - C.M.Jadhao.pdf:pdf
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{Kang2013}{misc}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Kang}{K.}%
+     {Qingbo}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Ke}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Yang}{Y.}%
+     {Jichun}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{copyright protection,digital watermarking,information hiding,qr code}
+  \strng{namehash}{KQLKYJ1}
+  \strng{fullhash}{KQLKYJ1}
+  \field{labelyear}{2013}
+  \field{sortinit}{K}
+  \field{number}{1}
+  \field{pages}{1\bibrangedash 7}
+  \field{title}{{A Digital Watermarking Approach Based on DCT Domain Combining
+  QR Code and Chaotic Theory}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2013/2013 - A Digital Waterma
+  \verb rking Approach Based on DCT Domain Combining QR Code and Chaotic Theory
+  \verb  - Kang, Li, Yang.pdf:pdf
+  \endverb
+  \field{year}{2013}
+\endentry
+
+\entry{Michalewicz2002}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Michalewicz}{M.}%
+     {Z.}{Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fogel}{F.}%
+     {D.B.}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{MZFD1}
+  \strng{fullhash}{MZFD1}
+  \field{labelyear}{2002}
+  \field{sortinit}{M}
+  \field{edition}{3ed}
+  \field{pages}{467}
+  \field{title}{{How to Solve It: Modern Heuristics.}}
+  \list{location}{1}{%
+    {New York}%
+  }
+  \field{year}{2002}
+\endentry
+
+\entry{Nikam2016}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Nikam}{N.}%
+     {Mahesh~B}{M.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bujare}{B.}%
+     {Anil~P}{A.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{embedding watermark,extracting watermark,mean square error,mse,peak
+  signal to noise,psnr,ratio}
+  \strng{namehash}{NMBBAP1}
+  \strng{fullhash}{NMBBAP1}
+  \field{labelyear}{2016}
+  \field{sortinit}{N}
+  \field{booktitle}{International Conference on Recent Innovations in
+  Engineering and Management}
+  \field{pages}{912\bibrangedash 915}
+  \field{title}{{DCT based digital image watermarking and de-watermarking for
+  copy right protection}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2016/2016 - DCT based digital
+  \verb  image watermarking and de-watermarking for copy right protection - Nik
+  \verb am, Bujare.pdf:pdf
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{Plain-Jones1995}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Plain-Jones}{P.-J.}%
+     {Charlie}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PJC1}
+  \strng{fullhash}{PJC1}
+  \field{labelyear}{1995}
+  \field{sortinit}{P}
+  \field{issn}{0260-2288}
+  \field{number}{1}
+  \field{pages}{12\bibrangedash 15}
+  \field{title}{{Data matrix identification}}
+  \field{volume}{15}
+  \field{journaltitle}{Sensor Review}
+  \field{annotation}{%
+  The following values have no corresponding Zotero field: PB - MCB UP Ltd%
+  }
+  \field{year}{1995}
+\endentry
+
+\entry{PriyankaRani2016}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {{Priyanka Rani}}{P.}%
+     {Anupam~Singh}{A.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Singh}{S.}%
+     {Avinash~Kumar}{A.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{- discrete cosine transform,cover,dct,discrete
+  wavelet,dwt,image,singular value decomposition,svd,transform,watermark
+  message}
+  \strng{namehash}{PASSAK1}
+  \strng{fullhash}{PASSAK1}
+  \field{labelyear}{2016}
+  \field{sortinit}{P}
+  \field{number}{6}
+  \field{pages}{5500}
+  \field{title}{{Digital Image Watermarking Using DCT And DWT To Improve
+  Robustness}}
+  \field{volume}{14}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2016/2016 - Digital Image Wat
+  \verb ermarking Using DCT And DWT To Improve Robustness - Priyanka Rani, Sing
+  \verb h.pdf:pdf
+  \endverb
+  \field{journaltitle}{(IJCSIS) International Journal of Computer Science and
+  Information Security}
+  \field{year}{2016}
+\endentry
+
+\entry{Rahman2016}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Rahman}{R.}%
+     {Maklachur}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ahammed}{A.}%
+     {Shale}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ahmed}{A.}%
+     {Rishad}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Izhar}{I.}%
+     {Mohammed~Navid}{M.~N.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{090699,DCT,SVD.,asemiblindwatermarkingtechniqueforcopyrightprotectionofimagebasedondctandsvddomain,compliance
+  and regulations of,dct,for code,gjre-f classification,sorted out
+  image,strictly as per the,svd,watermarking,zigzag process}
+  \strng{namehash}{RMASAR+1}
+  \strng{fullhash}{RMASARIMN1}
+  \field{labelyear}{2016}
+  \field{sortinit}{R}
+  \field{number}{7}
+  \field{title}{{A Semi Blind Watermarking Technique for Copyright Protection
+  of Image Based on DCT and SVD Domain}}
+  \field{volume}{16}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2016/2016 - A Semi Blind Wate
+  \verb rmarking Technique for Copyright Protection of Image Based on DCT and S
+  \verb VD Domain - Rahman et al.pdf:pdf
+  \endverb
+  \field{journaltitle}{Global Journal of Researches in Engineering}
+  \field{year}{2016}
+\endentry
+
+\entry{Salama2016}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Salama}{S.}%
+     {Ahmed~S}{A.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mokhtar}{M.}%
+     {Mohamed~Amr}{M.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{-digital image,combination,data hiding,discrete cosine,discrete wavelet
+  transforms,hybrid fusion technique,image,image fusion,transform,watermarking}
+  \strng{namehash}{SASMMA1}
+  \strng{fullhash}{SASMMA1}
+  \field{labelyear}{2016}
+  \field{sortinit}{S}
+  \field{booktitle}{2nd IEEE International Conference on Computer and
+  Communications}
+  \field{isbn}{9781467390262}
+  \field{pages}{557\bibrangedash 562}
+  \field{title}{{Combined Technique for Improving Digital Image Watermarking}}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2016/2016 - Combined Techniqu
+  \verb e for Improving Digital Image Watermarking - Salama, Mokhtar.pdf:pdf
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{Singh2017}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Singh}{S.}%
+     {Mahima}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Saxena}{S.}%
+     {Ankur}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{- gui-graphical user interface,dct- discreet cosine transform,ga-
+  genetic,matlab-matrix laboratory,ram-random access memory}
+  \strng{namehash}{SMSA1}
+  \strng{fullhash}{SMSA1}
+  \field{labelyear}{2017}
+  \field{sortinit}{S}
+  \field{number}{03}
+  \field{pages}{1\bibrangedash 13}
+  \field{title}{{Image watermarking using discrete cosine transform [DCT] and
+  genetic algorithm [GA]}}
+  \field{volume}{04}
+  \verb{file}
+  \verb :home/ernesto/Documentos/Mendeley Desktop/2017/2017 - Image watermarkin
+  \verb g using discrete cosine transform DCT and genetic algorithm GA - Singh,
+  \verb  Saxena.pdf:pdf
+  \endverb
+  \field{journaltitle}{International Journal of Innovation in Engineering
+  Research \& Management}
+  \field{year}{2017}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

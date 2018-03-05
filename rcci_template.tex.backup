@@ -1,0 +1,408 @@
+\documentclass{rcci} %[noauthor]
+\usepackage{float}
+
+\usepackage[hyperref=true,
+            backref=true,
+            style=iso-authoryear,
+            maxcitenames=3,
+            maxbibnames=100,
+            backend=bibtex, % while checking on one of my (newest) systems, this option was needed to generate bibliography
+            block=none]{biblatex}
+
+\bibliography{rcci_template}
+
+\begin{document}
+%
+% Detalles del artículo, título y autores
+\def\tipoarticulo{Artículos originales} % Artículos invitados | Artículos originales | Artículos de revisión | Artículos cortos
+\def\tematica{Procesamiento de imágenes} % Bioinformática | Desarrollo de aplicaciones informáticas | Ingeniería y gestión de software | Inteligencia artificial | Matemática computacional | Procesamiento de imágenes | Programación paralela y distribuida | Reconocimiento de patrones | Seguridad informática | Sistemas digitales | Software libre | Técnicas de programación | Tecnologías de bases de datos | Tecnologías de la información y las telecomunicaciones
+
+\title{Marca de agua digital basada en DWT-DCT para imágenes de documentos manuscritos: optimización contra ataques de compresión JPEG}
+\def\englistitle{DWT-DCT based watermarking for handwritten document images: optimization against JPEG compression attacks}
+\author[1*]{\bf Ernesto Avila-Domenech}
+\affil[1]{Calle 9 \# 419, Rpto. Camilo Cienfuegos, Bayamo, Granma}
+\def\authormail{\href{mailto:eadomenech@gmail.com}{\nolinkurl{eadomenech@gmail.com}}
+}
+%
+
+\maketitle
+%
+{\fontsize{11}{11}\selectfont
+\begin{abstract}
+\par\noindent
+\vskip -1em
+En el presente trabajo se realiza una optimización mediante un Algoritmo Genético de una técnica basada en la combinación de dos exitosas transformadas, la Transformada de Coseno Discreta (DCT) y la Transformada Wavelet Discreta (DWT), específicamente para imágenes correspondientes a documentos
+ manuscritos.
+ La técnica consiste en aplicar la Transformada Wavelet Discreta, dividir una de sus bandas en bloques de 8x8 y aplicarle la Transformada de Coseno Discreta a los bloques seleccionados para insertar información correspondiente a la marca de agua. Luego se modifican algunas de sus componentes según la marca de agua
+ a insertar. La marca de agua consistirá en un código de respuesta rápida (QR Code).
+ Se presentan además los resultados obtenidos en cuanto a la calidad perceptual (PSNR) y de robutez (BER).
+\vskip 1em
+\keywords{Algoritmo Genético, Documento manuscrito, DWT-DCT, QR Code, Marca de agua digital}
+\vskip 1em
+\englishabstract{In the present work we perform an optimization using a Genetic Algorithm of a technique based on the combination of
+two successful transforms, the Discrete Cosine Transform (DCT) and Discrete Wavelet Transform (DWT), specifically for
+handwritten documents images.
+ The technique consists in applying the Wavelet Discrete Transform, dividing one of its bands into 8x8 blocks and applying
+ the Discrete Cosine Transform to the selected blocks to insert information corresponding to the watermark. Then some of its
+ components are modified according to the watermark to be inserted. The watermark will consist of a QR code.
+ In addition, the results obtained in terms of perceptual quality (PSNR) and robustness (BER) are presented.}
+\vskip 1em
+\englishkeywords{Palabra1, Palabra2, Palabra3}
+\end{abstract}}
+
+\onehalfspacing
+\parskip=12pt
+\section{Introducción}
+
+La ciencia Archivística se define como el estudio teórico y práctico de los principios, procedimientos y problemas concernientes a las funciones de los Archivos. Su principal
+objetivo es lograr que la documentación se mantenga en el tiempo facilitando su consulta. 
+
+Los espacios físicos destinados al almacenamiento de los documentos, tomaron diferentes nombres en dependencia de las culturas y de las funciones para las cuales
+fueron creadas. Dentro de ellos se encuentran los Archivos Históricos, que tienen como finalidad proteger y esparcir por todo el pueblo el patrimonio documental de una nación,
+región o localidad.
+
+En Cuba, uno de los archivos históricos de mayor relevancia es el Archivo Histórico de Manzanillo (AHM), situado en la provincia Granma. Dicha institución se encuentra en medio de un proceso de informatización y digitalización de sus archivos y documentos históricos,
+con el objetivo de preservarlos y conservarlos para posteriormente poder difundir, promocionar y socializar la memoria histórica, cultural y documental de la región.
+Sobre tales objetivos, el AHM ha logrado avances significativos en el desarrollo de soluciones informáticas que responden a los problemas de informatización
+en la institución. Muestra de ello es la utilización de una aplicación llamada DocLux, desarrollada en la Facultad Regional de la Universidad
+de las Ciencias Informáticas en Granma (FRG) actualmente perteneciente a la Universidad de Granma. Dicha aplicación permite agilizar el tratamiento a imágenes digitales de
+archivos históricos, provenientes de múltiples equipos y con diversas características. Además, permite visualizar imágenes digitales,
+aplicar distintos tipos de filtros (Promedio, Gaussiano y Unshard), obtener mejoras en las imágenes a partir de las técnicas de histograma (brillo, contraste y corrección gamma),
+cargar varias imágenes para realizarles el proceso de tratamiento, así como almacenarlas en dispositivos externos y en directorios específicos
+del ordenador.
+
+Una de las características que se le desea adicionar a DocLux es alguna técnica que permita garantizar el derecho de autor de las imágenes tratadas, siendo las marcas de agua
+digitales el método más utilizado para este fin. 
+
+Las marcas de agua digitales son técnicas para el ocultamiento de la información. Es el proceso de insertar un archivo digital en otro. En \parencite{Cox2008} se definen como 
+la práctica de una imperceptible alteración de un trabajo (imagen, sonido, etc.) para incrustar una información relativa a dicho trabajo.
+
+En varios esquemas de marcas de agua digitales en imágenes, la imagen marcada posee el logo u otra imagen representativa a la organización.
+Existen dos formas básicas de insertar una marca de agua: en el dominio espacial o en el dominio de la frecuencia, siendo esta última más utilizada pues con ella se garantiza 
+una mayor robutez.
+
+En la literatura se pueden encontrar diferentes técnicas de marcas de agua digitales en el dominio frecuencial,
+siendo la Transformada de Coseno Discreta (DCT) la más utilizada \parencite{Singh2017, Abraham2016, Nikam2016, Rahman2016, Kang2013}.
+En los últimos años ha sido una tendencia combinar la DCT con la Transformada Wavelet Discreta (DWT), ejemplo de ellos son
+\parencite{Cao2010, Chow2017, Ghazvini2017, PriyankaRani2016, Salama2016, Journal2015},
+ por lo que proponer una técnica basada en la combinación DWT-DCT para el marcado digital de imágenes correspondientes a documentos manuscritos resulta una opción tentadora.
+
+En el presente artículo se realiza una optimización mediante un algoritmo genético de una técnica basada en la
+combinación DWT-DCT específicamente para imágenes de documentos manuscritos. La técnica consiste en aplicar a
+la imagen original la DWT, dividir una de sus bandas en bloques de 8x8 y aplicarle la DCT a los bloques
+seleccionados para insertar información correspondiente a la marca de agua. Luego se modifican algunos de sus
+coeficientes según la marca de agua a insertar. La marca de agua consistirá en un código de respuesta rápida
+(QR Code) con un texto identificativo al Archivo Histórico.
+
+\subsection{Transformada de Coseno Discreta}
+
+La DCT es una transformada basada en la Transformada de Fourier Discreta (DFT),
+pero utilizando únicamente números reales. En imágenes, generalmente no se aplica a la imagen de forma directa, sino que primeramente 
+se divide dicha imagen en bloques y luego se aplica la transformada a cada bloque, resultando una matriz dividida en bandas de baja, media
+y altas frecuencias. Si se posee una imagen de tamaño NxN las ecuaciones utilizadas para calcular la DCT y su inversa (IDCT) son las siguientes: 
+
+\begin{equation}
+D(u,v)=b(u)b(v)\sum_{x=0}^{N-1}\sum_{y=0}^{N-1}f(x,y)\cos\left[\frac{\left(2x+1\right)u\pi}{2N}\right]\cos\left[\frac{\left(2y+1\right)v\pi}{2N}\right]
+\end{equation}
+
+\begin{equation}
+f(x,y)=\sum_{x=0}^{N-1}\sum_{y=0}^{N-1}b(u)b(v)D(u,v)\cos\left[\frac{\left(2x+1\right)u\pi}{2N}\right]\cos\left[\frac{\left(2y+1\right)v\pi}{2N}\right]
+\end{equation}
+donde $D$ representa los coeficientes de la DCT de la imagen y $f$ representa la función obtenida al aplicar
+la IDCT. Además se define que: 
+
+\begin{equation}
+b(u)=\begin{cases}
+\frac{1}{\sqrt{N}} & ,u=0\\
+\sqrt{\frac{1}{N}} & ,1\leq u\leq N-1
+\end{cases}
+\end{equation}
+
+\begin{equation}
+b(v)=\begin{cases}
+\frac{1}{\sqrt{N}} & ,v=0\\
+\sqrt{\frac{1}{N}} & ,1\leq v\leq N-1
+\end{cases}
+\end{equation}
+
+El primer coeficiente de la matriz obtenida al aplicar la DCT a un bloque (coeficiente DC) es simplemente el promedio
+de los restantes coeficientes del bloque. Los restantes coeficientes representan sucesivamente de forma creciente las frecuencias.
+
+\subsection{Transformada Wavelet Discreta}
+
+La idea básica de la DWT para señales de una dimensión es dividir la señal en dos partes, altas y bajas frecuencias.
+Las altas frecuencias representan básicamente los contornos de la señal y las bajas frecuencias se dividen nuevamente en dos
+partes. Este proceso continúa un número arbitrario de veces. Una de las características de la DWT es que existe la posibilidad de reconstruir
+la señal original a partir de los coeficientes obtenidos al aplicar la DWT. Este último proceso es llamado Transformada
+Wavelet Discreta Inversa (IDWT).
+La DWT y IDWT en dos dimensiones (m,n) pueden ser definidas como la implementación de la DWT y IDWT para una dimensión correspondientes a las
+dimensiones m y n separadamente. Una imagen puede ser descompuesta en una estructura en pirámide como se muestra en la figura \ref{piramide}.
+
+\begin{figure}[h]	% h-here, t-top, b-bottom
+\centering
+\includegraphics[width=7cm]{DWT} %	** if .eps or .pdf, don't need extension
+\caption{Pirámide al descomponer una imagen con DWT 2D.}
+\label{piramide}
+\end{figure}
+
+\subsection{Códigos de Respuesta Rápida (QR Code)}
+
+Los códigos QR contienen información tanto en la dirección vertical como en la horizontal, mientras que un código de barras contiene datos en una sola dirección. 
+Además, tienen mayor volumen de información que un código de barras.
+
+\begin{figure}[h]	% h-here, t-top, b-bottom
+\centering
+\includegraphics[width=2.5in]{Watermarking1} %	** if .eps or .pdf, don't need extension
+\caption{Código QR correspondiente al texto "Watermarking" utilizado como marca de agua digital.}
+\label{qr_code}
+\end{figure}
+Los códigos QR se desarrollaron en Japón por Denso Corporation en
+1994, y más tarde fueron reconocidos como un estándar ISO. Se caracterizan
+por los tres cuadrados que se encuentran esquinados y que permiten
+detectar la posición del código al lector. La sigla QR se deriva de
+la frase inglesa Quick Response (respuesta rápida). No es el único
+tipo de código de dos dimensiones, pues existen otros tales como PDF
+417 \parencite{Hahn2002}, Data Matrix \parencite{Plain-Jones1995} y Maxi
+Code \parencite{He2002}.
+
+
+\section{Materiales y métodos o Metodología computacional}\label{metodos}
+
+\subsection{Algoritmo Genético}
+
+Los Algoritmos Genéticos son algoritmos de búsqueda heurística inspirados en la evolución natural de poblaciones,
+en la teoría de la selección natural de Darwin y en la teoría de la transferencia del material genético de Mendel. Estos algoritmos son frecuentemente
+utilizados para la resolución de problemas complejos de optimización. \parencite{Michalewicz2002}
+
+En los algoritmos genéticos los individuos se denominan cromosomas. Cada cromosoma
+es una solución a un problema específico. Las características de un cromosoma se
+denominan genes. También existe una función de aptitud, la cual aplicada a cada
+cromosoma devuelve un valor que indica cuán apto es y permite compararlos entre ellos.
+
+\begin{figure}[h]	% h-here, t-top, b-bottom
+\centering
+\includegraphics[width=14cm]{AG} %	** if .eps or .pdf, don't need extension
+\caption{Algoritmo Genético propuesto.}
+\label{ag}
+\end{figure}
+
+Los algoritmos genéticos necesitan para su inicio de una población; una vez que se tiene una
+población se reproducen los individuos para obtener mayor variedad, tal como en la
+naturaleza. Luego, es necesario seleccionar los mejores, para ir evolucionando. Hay varios
+métodos de selección pero en general lo que se busca es que los mejores pasen a la
+próxima generación y algunos no tan aptos también, ya que la variedad ayuda a que en la
+reproducción se generen cromosomas más aptos aun que sus padres. Puede que de la
+cruza de un cromosoma muy apto y otro no tanto resulte uno mucho mejor a sus padres.
+
+En el presente trabajo se propone como Función de Aptitud (FA) la mostrada en la ecuación \ref{FA}.
+
+\begin{equation}
+FA = (PSNR/160 + 1 - ber\_sin\_ruido + 1 - ber\_con\_ruido)/3 + \beta
+\label{FA}
+\end{equation}
+donde $PSNR$ es la medición de la imperceptibilidad comunmente utilizada Relación Señal a Ruido Pico,
+$ber\_sin\_ruido$ representa el número de bits o bloques incorrectamente extraídos de la imagen marcada
+sin aplicarle ataque alguno con respecto al total de bits o bloques embebidos y $ber\_con\_ruido$ lo mismo
+que  $ber\_sin\_ruido$ pero correspondiente a la imagen marcada con ruido. $\beta$ toma valor $0.05$ en caso de
+que $ber\_con\_ruido < 0.05$, de lo contrario toma valor $0$. 
+
+\subsection{Técnica de marca de agua digital utilizada}
+
+\subsubsection*{Proceso de embebido}
+\begin{itemize}
+ \item Se genera el código QR correspondiente al texto a ocultar.
+ \item La imagen a marcar es dividida en R, G y B.
+ \item Se aplica la DWT a la componente B correspondiente al color azul.
+ \item Se selecciona la subbanda $\alpha$ correspondiente a la DWT dada por el cromosoma a analizar y se divide en bloques de 8x8.
+ \item Se aplica la DCT a cada uno de los bloques obtenidos.
+ \item Se le adiciona o substrae un valor $\Delta$ a los coeficientes comprendidos entre el
+ $coef\_inicial$ y el $coef\_final$ (incluyendo a ambos) en correspondencia con el bit a marcar (1 o 0).
+ \item Se aplica la IDCT a cada uno de los bloques modificados.
+ \item Se aplica la IDWT para obtener la componente B modificada.
+ \item Finalmente se construye una imagen RGB utilizando las componentes R y G de la imagen original y la componente B modificada.
+\end{itemize}
+
+Los valores $\alpha$, $\Delta$, $coef\_inicial$ y $coef\_final$ son obtenidos por el cromosoma a evaluar.
+
+\subsubsection*{Proceso de extracción}
+\begin{itemize}
+ \item La imagen marcada es dividida en las componentes R, G y B.
+ \item Se aplica la DWT a la componente B correspondiente al color azul.
+ \item Se selecciona la subbanda $\alpha$ correspondiente a la DWT y se divide en bloques de 8x8.
+ \item Se aplica la DCT a cada uno de los bloques obtenidos.
+ \item Se calcula la sumatoria de los coeficientes comprendidos entre $coef\_inicial$ y $coef\_final$ (incluyendo a ambos)
+ y se comprueba si dicha sumatoria es mayor que 0. En caso positivo el bit embebido es 1, de lo contrario
+  el bit embebido es 0.
+ \item Se genera una imagen con los bit extraídos.
+ \item Se realiza una simple reconstrucción al código QR y se decodifica con alguna de las aplicaciones existentes.
+\end{itemize}
+
+
+\section{Resultados y discusión}
+
+Para la evaluación de los resultados se utiliza la medición de la imperceptibilidad Relación Señal a Ruido Pico (PSNR) y la medición de robustez (BER) 
+que no es más que el número de bits o bloques incorrectamente extraídos, con respecto al total de bits o bloques embebidos.
+
+El PSNR es calculado mediante la ecuación \ref{equation_psnr}.
+
+\begin{equation}
+PSNR=10\log_{10}\left(\frac{MAX^{2}}{MSE}\right)=20\log_{10}\left(\frac{MAX}{\sqrt{MSE}}\right)
+\label{equation_psnr}
+\end{equation}
+donde $MAX$ denota el máximo valor que puede tomar un pixel y $MSE$
+representa el error cuadrático medio.
+\begin{equation}
+MSE=\frac{1}{MN}\sum_{i=1}^{M}\sum_{j=1}^{N}\left[f'(m,n)-f(m,n)\right]^{2}
+\end{equation}
+donde MxN es el tamaño de la imagen.
+
+La imagen marcada no posee diferencia visual cuando el $PSNR>30dB$. \parencite{Cao2010}
+
+El BER es calculado como lo expresa la ecuación \ref{ber}.
+
+\begin{equation}
+BER=\frac{1}{B}\sum_{n=0}^{B-1}\begin{cases}
+\begin{array}{ccc}
+1 & si & w'(n)\neq w(n)\\
+0 & si & w'(n)=w(n)
+\end{array}\end{cases}
+\label{ber}
+\end{equation}
+donde $w(n)$ y $w'(n)$ son los valores binarios (0 o 1) correspondientes a la marca de agua embebida y la
+extraída, siendo $B$ el número de pixeles de la marca de agua.
+
+En las pruebas realizadas se tomaron las cuatro imágenes mostradas en la figura \ref{img_of_AHM} como imágenes
+a marcar y el código QR mostrado en la figura \ref{qr_code} se utilizó como marca de agua.
+
+\begin{figure}[t]
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+\verb+1.jpg+
+&\verb+2.jpg+\\\hline
+\includegraphics[width=4cm]{1}
+&\includegraphics[width=4cm]{2}\\\hline
+\verb+8.jpg+
+&\verb+10.jpg+\\\hline
+\includegraphics[width=4cm]{8}
+&\includegraphics[width=4cm]{10}\\\hline
+\end{tabular}
+\end{center}
+\caption{Imágenes pertenecientes al Archivo Histórico de Manzanillo tratadas por DocLux.}
+\label{img_of_AHM}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+1.jpg & 0.72982 & HH & 2 & 46 & 47 & 24 & 57.54294 & 0.0 & Si \\
+2.jpg & 0.73937 & HH & 8 & 16 & 23 & 4 & 60.59930 & 0.0 & Si \\
+8.jpg & 0.71072 & LH & 3 & 8 & 10 & 8 & 51.59664 & 0.00104 & Si \\
+10.jpg & 0.73852 & HH & 9 & 40 & 48 & 3 & 60.99355 & 0.00416 & Si \\\hline
+\end{tabular}
+\caption{Parámetros optimizados, sin aplicar ataque.}
+\end{table}
+
+Los valores obtenidos para cada uno de los ataques expuestos arrojan resultados positivos, pues en el $100\%$ 
+de los casos la marca de agua extraída pudo ser decodificada. Además los valores de PSNR son superiores de
+$30dB$, siendo en la imagen 2.jpg la que mejor resultado se obtuvo, en cuanto a PSNR, al realizar ataque de compresión JPEG
+con calidad de 25\%, 50\% y 75\%.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+1.jpg & 0.79020 & LL & 5 & 31 & 35 & 67 & 36.12731 & 0.00520 & Si \\
+2.jpg & 0.79878 & LL & 25 & 36 & 60 & 30 & 39.58298 & 0.00104 & Si \\
+8.jpg & 0.78731 & LL & 5 & 54 & 58 & 75 & 34.74305 & 0.00520 & Si \\
+10.jpg & 0.79164 & LL & 15 & 37 & 51 & 32 & 38.98341 & 0.01873 & Si \\\hline
+\end{tabular}
+\caption{Parámetros optimizados, ataque compresión JPEG con calidad 75\%.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+1.jpg & 0.78371 & LL & 5 & 28 & 32 & 65 & 35.53907 & 0.01561 & Si \\
+2.jpg & 0.79378 & LL & 25 & 36 & 60 & 31 & 39.51046 & 0.01561 & Si \\
+8.jpg & 0.78227 & LL & 5 & 31 & 35 & 110 & 33.32118 & 0.01145 & Si \\
+10.jpg & 0.78530 & LL & 6 & 29 & 34 & 98 & 36.27244 & 0.02081 & Si \\\hline
+\end{tabular}
+\caption{Parámetros optimizados, ataque compresión JPEG con calidad 50\%.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+1.jpg & 0.77934 & LL & 14 & 38 & 51 & 112 & 30.08448 & 0.0 & Si \\
+2.jpg & 0.78668 & LL & 7 & 27 & 33 & 125 & 34.27201 & 0.00416 & Si \\
+8.jpg & 0.77790 & LL & 4 & 30 & 33 & 121 & 32.55666 & 0.01977 & Si \\
+10.jpg & 0.77535 & LL & 15 & 43 & 57 & 101 & 30.83282 & 0.01665 & Si \\\hline
+\end{tabular}
+\caption{Parámetros optimizados, ataque compresión JPEG con calidad 25\%.}
+\end{table}
+
+En cuanto al BER, es destacable el $0.0$ obtenido al extraer la marca de agua a la imagen 1.jpg luego de
+realizarle un ataque de compresión JPEG con calidad de 25\%.
+
+\begin{figure}[H]	% h-here, t-top, b-bottom
+\begin{center}
+\begin{tabular}{|c|c|c|c|}\hline
+\verb+1.jpg, sin ataque+
+&\verb+1.jpg, JPEG 75%+
+&\verb+1.jpg, JPEG 50%+
+&\verb+1.jpg, JPEG 25%+\\\hline
+\includegraphics[width=2.2cm]{1_without_noise}
+&\includegraphics[width=2.2cm]{1_jpeg_75}
+&\includegraphics[width=2.2cm]{1_jpeg_50}
+&\includegraphics[width=2.2cm]{1_jpeg_25}\\\hline
+\verb+2.jpg, sin ataque+
+&\verb+2.jpg, JPEG 75%+
+&\verb+2.jpg, JPEG 50%+
+&\verb+2.jpg, JPEG 25%+\\\hline
+\includegraphics[width=2.2cm]{2_without_noise}
+&\includegraphics[width=2.2cm]{2_jpeg_75}
+&\includegraphics[width=2.2cm]{2_jpeg_50}
+&\includegraphics[width=2.2cm]{2_jpeg_25}\\\hline
+\verb+8.jpg, sin ataque+
+&\verb+8.jpg, JPEG 75%+
+&\verb+8.jpg, JPEG 50%+
+&\verb+8.jpg, JPEG 25%+\\\hline
+\includegraphics[width=2.2cm]{8_without_noise}
+&\includegraphics[width=2.2cm]{8_jpeg_75}
+&\includegraphics[width=2.2cm]{8_jpeg_50}
+&\includegraphics[width=2.2cm]{8_jpeg_25}\\\hline
+\verb+10.jpg, sin ataque+
+&\verb+10.jpg, JPEG 75%+
+&\verb+10.jpg, JPEG 50%+
+&\verb+10.jpg, JPEG 25%+\\\hline
+\includegraphics[width=2.2cm]{10_without_noise}
+&\includegraphics[width=2.2cm]{10_jpeg_75}
+&\includegraphics[width=2.2cm]{10_jpeg_50}
+&\includegraphics[width=2.2cm]{10_jpeg_25}\\\hline
+\end{tabular}
+\end{center}
+\caption{Códigos QR extraídos correspondientes a la imagen y ataque referidos.}
+\label{qr_extraidos}
+\end{figure}
+
+\section{Conclusiones}
+
+En el presente trabajo se implementó una técnica de marca de agua digital basada en la combinación DWT-DCT,
+la cual fue optimizada por un algoritmo genético para imágenes correspondientes a documentos manuscritos.
+Los resultados muestran un BER inferior a $0.03$, por lo que el código QR extraído fue decodificado en el 100\% de
+los casos. Además, los valores de PSNR en la totalidad de los casos superó los $30dB$, por lo que no existe
+diferencia visual para el hombre entre las imágenes originales y las marcadas.
+ También se pudo identificar que la sub-banda LL perteneciente a la DWT es la que mejores resultado brinda
+ para la técnica utilizada en cuanto a ataques de compresión JPEG. Se identificaron los posibles
+ $\Delta$ y coeficientes de la DCT a modificar para obtener los mejores resultados según la FA utilizada.
+
+\printbibliography
+
+\end{document}
