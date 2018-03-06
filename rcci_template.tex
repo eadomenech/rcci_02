@@ -157,7 +157,7 @@ Además, tienen mayor volumen de información que un código de barras.
 \begin{figure}[h]	% h-here, t-top, b-bottom
 \centering
 \includegraphics[width=2.5in]{Watermarking1} %	** if .eps or .pdf, don't need extension
-\caption{Código QR correspondiente al texto Watermarking utilizado como marca de agua digital.}
+\caption{Código QR correspondiente al texto ``Watermarking'' utilizado como marca de agua digital.}
 \label{qr_code}
 \end{figure}
 Los códigos QR se desarrollaron en Japón por Denso Corporation en
@@ -219,11 +219,12 @@ a seleccionar (2 bit, 4 opciones), coeficiente inicial y final del subconjunto a
 	\label{cromosoma}
 \end{figure}
 
-Por ejemplo, el cromosoma 000010010110011101010 es el correspondiente a:
+Por ejemplo, el cromosoma \textcolor{red}{00}\textcolor{blue}{001001}\textcolor{green}{011001}\textcolor{violet}{1101010} es el correspondiente a:
+
 \begin{itemize}
 	\item seleccionar los coeficientes de aproximación cuando se aplica la DWT
-	\item tomar como coeficiente inicial y final al 10 y 26 respectivamente
-	\item sumar o restar a cada coeficiente en el subconjunto [10, 26] el valor de 106	
+	\item tomar como coeficiente inicial y final al 9 y 25 respectivamente
+	\item sumar o restar a cada coeficiente en el subconjunto [9, 25] el valor 106	
 \end{itemize} 
 
 \subsection{Exploración en zig-zag}
@@ -255,7 +256,7 @@ Existen dos modos de exploración de los coeficientes transformados con la DCT: `
  \item Finalmente se construye una imagen RGB utilizando las componentes R y G de la imagen original y la componente B modificada.
 \end{itemize}
 
-Los valores $\alpha$, $\Delta$, $coef\_inicial$ y $coef\_final$ son obtenidos por el cromosoma a evaluar.
+Los valores $\alpha$, $coef\_inicial$, $coef\_final$ y $\Delta$ son obtenidos por el cromosoma a evaluar.
 
 \subsubsection*{Proceso de extracción}
 \begin{itemize}
@@ -328,7 +329,7 @@ a marcar y el código QR mostrado en la figura \ref{qr_code} se utilizó como marc
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
 1.jpg & 0.72982 & HH & 2 & 46 & 47 & 24 & 57.54294 & 0.0 & Si \\
 2.jpg & 0.73937 & HH & 8 & 16 & 23 & 4 & 60.59930 & 0.0 & Si \\
 8.jpg & 0.71072 & LH & 3 & 8 & 10 & 8 & 51.59664 & 0.00104 & Si \\
@@ -346,7 +347,7 @@ con calidad de 25\%, 50\% y 75\%.
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
 1.jpg & 0.79020 & LL & 5 & 31 & 35 & 67 & 36.12731 & 0.00520 & Si \\
 2.jpg & 0.79878 & LL & 25 & 36 & 60 & 30 & 39.58298 & 0.00104 & Si \\
 8.jpg & 0.78731 & LL & 5 & 54 & 58 & 75 & 34.74305 & 0.00520 & Si \\
@@ -359,7 +360,7 @@ Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delt
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
 1.jpg & 0.78371 & LL & 5 & 28 & 32 & 65 & 35.53907 & 0.01561 & Si \\
 2.jpg & 0.79378 & LL & 25 & 36 & 60 & 31 & 39.51046 & 0.01561 & Si \\
 8.jpg & 0.78227 & LL & 5 & 31 & 35 & 110 & 33.32118 & 0.01145 & Si \\
@@ -372,7 +373,7 @@ Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delt
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Imagen & FA & Sub-banda & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
+Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta$ & PSNR & BER & Dec. QR \\\hline
 1.jpg & 0.77934 & LL & 14 & 38 & 51 & 112 & 30.08448 & 0.0 & Si \\
 2.jpg & 0.78668 & LL & 7 & 27 & 33 & 125 & 34.27201 & 0.00416 & Si \\
 8.jpg & 0.77790 & LL & 4 & 30 & 33 & 121 & 32.55666 & 0.01977 & Si \\
