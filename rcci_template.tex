@@ -198,17 +198,46 @@ próxima generación y algunos no tan aptos también, ya que la variedad ayuda a qu
 reproducción se generen cromosomas más aptos aun que sus padres. Puede que de la
 cruza de un cromosoma muy apto y otro no tanto resulte uno mucho mejor a sus padres.
 
-En el presente trabajo se propone como Función de Aptitud (FA) la mostrada en la ecuación \ref{FA}.
+En el presente trabajo se propone como Función de Aptitud (FA) la mostrada en la ecuación \ref{FA}, donde $PSNR$ es la medición de la imperceptibilidad comunmente utilizada Relación Señal a Ruido Pico,
+$ber\_sin\_ruido$ representa el número de bits o bloques incorrectamente extraídos de la imagen marcada
+sin aplicarle ataque alguno con respecto al total de bits o bloques embebidos y $ber\_con\_ruido$ lo mismo
+que  $ber\_sin\_ruido$ pero correspondiente a la imagen marcada con ruido. $\beta$ toma valor $0.05$ en caso de
+que $ber\_con\_ruido < 0.05$, de lo contrario toma valor $0$.
 
 \begin{equation}
 FA = (PSNR/160 + 1 - ber\_sin\_ruido + 1 - ber\_con\_ruido)/3 + \beta
 \label{FA}
 \end{equation}
-donde $PSNR$ es la medición de la imperceptibilidad comunmente utilizada Relación Señal a Ruido Pico,
-$ber\_sin\_ruido$ representa el número de bits o bloques incorrectamente extraídos de la imagen marcada
-sin aplicarle ataque alguno con respecto al total de bits o bloques embebidos y $ber\_con\_ruido$ lo mismo
-que  $ber\_sin\_ruido$ pero correspondiente a la imagen marcada con ruido. $\beta$ toma valor $0.05$ en caso de
-que $ber\_con\_ruido < 0.05$, de lo contrario toma valor $0$. 
+
+Como cromosoma se tomó una cadena de 21 bit, representando la subbanda o tipo de coeficientes de la DWT
+a seleccionar (2 bit, 4 opciones), coeficiente inicial y final del subconjunto a modificar (6 bit, 64 opciones cada uno) y el valor $\Delta$ a sumar o restar a cada coeficiente en este subconjunto (7 bit, 128 opciones).
+
+\begin{figure}[H]	% h-here, t-top, b-bottom
+	\centering
+	\includegraphics[width=15cm]{cromosoma} %	** if .eps or .pdf, don't need extension
+	\caption{Cromosoma de 21 bit utilizado.}
+	\label{cromosoma}
+\end{figure}
+
+Por ejemplo, el cromosoma 000010010110011101010 es el correspondiente a:
+\begin{itemize}
+	\item seleccionar los coeficientes de aproximación cuando se aplica la DWT
+	\item tomar como coeficiente inicial y final al 10 y 26 respectivamente
+	\item sumar o restar a cada coeficiente en el subconjunto [10, 26] el valor de 106	
+\end{itemize} 
+
+\subsection{Exploración en zig-zag}
+
+Los coeficientes de frecuencia más bajos contienen la mayor parte de la energía. En una matriz DCT, a medida que avanza por una fila, la frecuencia aumenta en la primera dimensión y, a medida que avanza por una columna, la frecuencia aumenta en la segunda dimensión. Una frecuencia alta en cualquier dimensión probablemente contenga menos energía. Por ejemplo, el coeficiente ubicado en (2,2) en una matriz DCT de 8x8 generalmente contiene más energía que el coeficiente ubicado en (1,8) en la misma matriz.
+
+Existen dos modos de exploración de los coeficientes transformados con la DCT: ``zig-zag'' y ``zig-zag inverso''. En la presente investigación se utilizó el ``zig-zag", el mismo se representa en \ref{zigzagdct}, donde la esquina superior izquierda es el término DC.
+
+\begin{figure}[H]	% h-here, t-top, b-bottom
+	\centering
+	\includegraphics[width=6cm]{zigzagdct} %	** if .eps or .pdf, don't need extension
+	\caption{Zig-zag en bloque de 8x8.}
+	\label{zigzagdct}
+\end{figure}
 
 \subsection{Técnica de marca de agua digital utilizada}
 
