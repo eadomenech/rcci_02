@@ -35,7 +35,7 @@ En el presente trabajo se realiza una optimización mediante un Algoritmo Genétic
  manuscritos.
  La técnica consiste en aplicar la Transformada Wavelet Discreta, dividir una de sus bandas en bloques de 8x8 y aplicarle la Transformada de Coseno Discreta a los bloques seleccionados para insertar información correspondiente a la marca de agua. Luego se modifican algunas de sus componentes según la marca de agua
  a insertar. La marca de agua consistirá en un código de respuesta rápida (QR Code).
- Se presentan además los resultados obtenidos en cuanto a la calidad perceptual (PSNR) y de robutez (BER).
+ Se presentan además los resultados obtenidos en cuanto a la calidad perceptual (PSNR) y de robustez (BER).
 \vskip 1em
 \keywords{Algoritmo Genético, Documento manuscrito, DWT-DCT, QR Code, Marca de agua digital}
 \vskip 1em
@@ -64,7 +64,7 @@ región o localidad.
 En Cuba, uno de los archivos históricos de mayor relevancia es el Archivo Histórico de Manzanillo (AHM), situado en la provincia Granma. Dicha institución se encuentra en medio de un proceso de informatización y digitalización de sus archivos y documentos históricos,
 con el objetivo de preservarlos y conservarlos para posteriormente poder difundir, promocionar y socializar la memoria histórica, cultural y documental de la región.
 Sobre tales objetivos, el AHM ha logrado avances significativos en el desarrollo de soluciones informáticas que responden a los problemas de informatización
-en la institución. Muestra de ello es la utilización de una aplicación llamada DocLux, desarrollada en la Facultad Regional de la Universidad
+en la institución. Muestra de ello es la utilización de la aplicación DocLux, desarrollada en la Facultad Regional de la Universidad
 de las Ciencias Informáticas en Granma (FRG) actualmente perteneciente a la Universidad de Granma. Dicha aplicación permite agilizar el tratamiento a imágenes digitales de
 archivos históricos, provenientes de múltiples equipos y con diversas características. Además, permite visualizar imágenes digitales,
 aplicar distintos tipos de filtros (Promedio, Gaussiano y Unshard), obtener mejoras en las imágenes a partir de las técnicas de histograma (brillo, contraste y corrección gamma),
@@ -79,7 +79,7 @@ la práctica de una imperceptible alteración de un trabajo (imagen, sonido, etc.)
 
 En varios esquemas de marcas de agua digitales en imágenes, la imagen marcada posee el logo u otra imagen representativa a la organización.
 Existen dos formas básicas de insertar una marca de agua: en el dominio espacial o en el dominio de la frecuencia, siendo esta última más utilizada pues con ella se garantiza 
-una mayor robutez.
+una mayor robustez.
 
 En la literatura se pueden encontrar diferentes técnicas de marcas de agua digitales en el dominio frecuencial,
 siendo la Transformada de Coseno Discreta (DCT) la más utilizada \parencite{Singh2017, Abraham2016, Nikam2016, Rahman2016, Kang2013}.
@@ -185,7 +185,7 @@ cromosoma devuelve un valor que indica cuán apto es y permite compararlos entre 
 
 \begin{figure}[h]	% h-here, t-top, b-bottom
 \centering
-\includegraphics[width=14cm]{AG} %	** if .eps or .pdf, don't need extension
+\includegraphics[width=12cm]{AG} %	** if .eps or .pdf, don't need extension
 \caption{Algoritmo Genético propuesto.}
 \label{ag}
 \end{figure}
@@ -202,29 +202,31 @@ En el presente trabajo se propone como función de aptitud (FA) la mostrada en la
 $ber\_sin\_ruido$ representa el número de bits o bloques incorrectamente extraídos de la imagen marcada
 sin aplicarle ataque alguno con respecto al total de bits o bloques embebidos y $ber\_con\_ruido$ lo mismo
 que  $ber\_sin\_ruido$ pero correspondiente a la imagen marcada con ruido. $\beta$ toma valor $0.05$ en caso de
-que $ber\_con\_ruido < 0.05$, de lo contrario toma valor $0$.
+que $ber\_con\_ruido < 0.03$, de lo contrario toma valor $0$.
 
 \begin{equation}
 FA = (PSNR/160 + 1 - ber\_sin\_ruido + 1 - ber\_con\_ruido)/3 + \beta
 \label{FA}
 \end{equation}
 
+La FA propuesta tiene como base la media aritmética entre la perceptibilidad y la robustez correspondiente a la imagen marcada sin aplicarle ataque y la imagen marcada atacada con compresión JPEG. Se divide el PSNR entre 160 para lograr un balance de importancia entre la imperceptibilidad y la robustez. Además se adiciona un plus de $0.05$ en caso de que $ber\_con\_ruido < 0.03$, esto significa que los errores obtenidos en el proceso están por debajo del límite para lograr una decodificación exitosa del código QR. 
+
 Como cromosoma se tomó una cadena de 21 bit, representando la subbanda o tipo de coeficientes de la DWT
-a seleccionar (2 bit, 4 opciones), coeficiente inicial y final del subconjunto a modificar (6 bit, 64 opciones cada uno) y el valor $\Delta$ a sumar o restar a cada coeficiente en este subconjunto (7 bit, 128 opciones).
+a seleccionar (2 bit, 4 opciones), el coeficiente inicial y final del subconjunto a modificar (6 bit, 64 opciones cada uno) y el valor $\Delta$ a sumar o restar a cada coeficiente en este subconjunto (7 bit, 128 opciones).
 
 \begin{figure}[H]	% h-here, t-top, b-bottom
 	\centering
-	\includegraphics[width=15cm]{cromosoma} %	** if .eps or .pdf, don't need extension
+	\includegraphics[width=13cm]{cromosoma} %	** if .eps or .pdf, don't need extension
 	\caption{Cromosoma de 21 bit utilizado.}
 	\label{cromosoma}
 \end{figure}
 
-Por ejemplo, el cromosoma \textcolor{red}{00}\textcolor{blue}{001001}\textcolor{green}{011001}\textcolor{violet}{1101010} es el correspondiente a:
+Por ejemplo, si se desea evaluar al cromosoma \textcolor{red}{11}\textcolor{blue}{001001}\textcolor{green}{011001}\textcolor{violet}{1101010}, significa que se debe:
 
 \begin{itemize}
-	\item seleccionar los coeficientes de aproximación cuando se aplica la DWT
-	\item tomar como coeficiente inicial y final al 9 y 25 respectivamente
-	\item sumar o restar a cada coeficiente en el subconjunto [9, 25] el valor 106	
+	\item seleccionar los coeficientes de detalles diagonales HH cuando se aplica la DWT ($\alpha=3, 4^{ta}$ opción)
+	\item tomar como coeficiente inicial y final al 9 y 25 respectivamente ($coef\_inicial=9$, $coef\_final=25$)
+	\item sumar o restar a cada coeficiente en el subconjunto [9, 25], utilizando exploración en zig-zag, el valor 106 ($\Delta=106$)	
 \end{itemize} 
 
 \subsection{Exploración en zig-zag}
@@ -235,7 +237,7 @@ Existen dos modos de exploración de los coeficientes transformados con la DCT: `
 
 \begin{figure}[H]	% h-here, t-top, b-bottom
 	\centering
-	\includegraphics[width=6cm]{zigzagdct} %	** if .eps or .pdf, don't need extension
+	\includegraphics[width=5cm]{zigzagdct} %	** if .eps or .pdf, don't need extension
 	\caption{Zig-zag en bloque de 8x8.}
 	\label{zigzagdct}
 \end{figure}
@@ -251,7 +253,7 @@ Existen dos modos de exploración de los coeficientes transformados con la DCT: `
  \item Se aplica la DCT a cada uno de los bloques obtenidos.
  \item Se le adiciona o substrae un valor $\Delta$ a los coeficientes comprendidos entre el
  $coef\_inicial$ y el $coef\_final$ (incluyendo a ambos) en correspondencia con el bit a marcar (1 o 0).
- \item Se aplica la IDCT a cada uno de los bloques modificados.
+ \item Se aplica la IDCT a cada uno de los bloques.
  \item Se aplica la IDWT para obtener la componente B modificada.
  \item Finalmente se construye una imagen RGB utilizando las componentes R y G de la imagen original y la componente B modificada.
 \end{itemize}
@@ -306,19 +308,19 @@ donde $w(n)$ y $w'(n)$ son los valores binarios (0 o 1) correspondientes a la ma
 extraída, siendo $B$ el número de pixeles de la marca de agua.
 
 En las pruebas realizadas se tomaron las cuatro imágenes mostradas en la figura \ref{img_of_AHM} como imágenes
-a marcar y el código QR mostrado en la figura \ref{qr_code} se utilizó como marca de agua.
+a marcar y el código QR mostrado en la figura \ref{qr_code} se utilizó como marca de agua digital.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{|c|c|}\hline
 \verb+1.jpg+
 &\verb+2.jpg+\\\hline
-\includegraphics[width=4cm]{1}
-&\includegraphics[width=4cm]{2}\\\hline
+\includegraphics[width=3.4cm]{1}
+&\includegraphics[width=3.4cm]{2}\\\hline
 \verb+8.jpg+
 &\verb+10.jpg+\\\hline
-\includegraphics[width=4cm]{8}
-&\includegraphics[width=4cm]{10}\\\hline
+\includegraphics[width=3.4cm]{8}
+&\includegraphics[width=3.4cm]{10}\\\hline
 \end{tabular}
 \end{center}
 \caption{Imágenes pertenecientes al Archivo Histórico de Manzanillo tratadas por DocLux.}
@@ -337,11 +339,6 @@ Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta
 \end{tabular}
 \caption{Parámetros optimizados, sin aplicar ataque.}
 \end{table}
-
-Los valores obtenidos para cada uno de los ataques expuestos arrojan resultados positivos, pues en el $100\%$ 
-de los casos la marca de agua extraída pudo ser decodificada. Además los valores de PSNR son superiores de
-$30dB$, siendo en la imagen 2.jpg la que mejor resultado se obtuvo, en cuanto a PSNR, al realizar ataque de compresión JPEG
-con calidad de 25\%, 50\% y 75\%.
 
 \begin{table}[H]
 \centering
@@ -381,6 +378,11 @@ Imagen & FA & $\alpha$ & Cant. Coef. & $coef\_inicial$ & $coef\_final$ & $\Delta
 \end{tabular}
 \caption{Parámetros optimizados, ataque compresión JPEG con calidad 25\%.}
 \end{table}
+
+Los valores obtenidos para cada uno de los ataques expuestos arrojan resultados positivos, pues en el $100\%$ 
+de los casos la marca de agua extraída pudo ser decodificada. Además los valores de PSNR son superiores de
+$30dB$, siendo en la imagen 2.jpg la que mejor resultado se obtuvo, en cuanto a PSNR, al realizar ataque de compresión JPEG
+con calidad de 25\%, 50\% y 75\%.
 
 En cuanto al BER, es destacable el $0.0$ obtenido al extraer la marca de agua a la imagen 1.jpg luego de
 realizarle un ataque de compresión JPEG con calidad de 25\%.
